@@ -1,0 +1,5 @@
+export * from './api-fetch/api-fetch.service'
+export * from './p1/p1.service'
+export * from './p2/p2.service'
+export * from './p12/p12.service'
+export * from './p23/p23.service'
