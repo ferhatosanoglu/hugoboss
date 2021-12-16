@@ -25,16 +25,9 @@ export class P3Component implements OnInit {
 
     this.periods = [
       {
-        name: '1 Sene',
-        timeFrameHeaders: ['MMM'],
-        classes: 'button',
-        timeFrameOverall: 1440 * 365,
-        timeFramePeriod: 1440,
-      },
-      {
         name: '1 ay',
-        timeFrameHeaders: ['MMM YYYY', 'DD'],
-        classes: 'button',
+        timeFrameHeaders: ['DD'],
+        classes: 'buttonday',
         timeFrameOverall: 1440 * 16,
         timeFramePeriod: 1440,
       }];
@@ -49,13 +42,13 @@ export class P3Component implements OnInit {
     this.p3 = await this._p23Service.listAsync();
 
     for (let x = 0; x < this.p3.length; x++) {
-      if (this.p3[x]['DataList'].TESLIM_TARIHI == this.p3[x + 1]['DataList'].TESLIM_TARIHI) {
+      if (this.p3[x]['DataList'].TESLIM_TARIHI == this.p3[x + 1]['DataList'].TESLIM_TARIHI || this.p3[x]['DataList'].URUN_GRUP_AD == this.p3[x + 1]['DataList'].URUN_GRUP_AD) {
 
       }
       else {
         this.items.push({
           id: this.p3[x]['DataList'].ORDER_KOD,
-          sectionID: 1,
+          sectionID: 3,
           name: this.p3[x]['DataList'].URUN_GRUP_AD,
           start: moment(this.p3[x]['DataList'].TESLIM_TARIHI).subtract(this.p3[0]['DataList'].MODEL_SURE - 24, 'h').startOf('day'),
           end: moment(this.p3[x]['DataList'].TESLIM_TARIHI).endOf('day'),

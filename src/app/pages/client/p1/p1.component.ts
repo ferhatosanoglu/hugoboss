@@ -25,16 +25,9 @@ export class P1Component implements OnInit {
 
     this.periods = [
       {
-        name: '1 Sene',
-        timeFrameHeaders: ['MMM'],
-        classes: 'button',
-        timeFrameOverall: 1440 * 365,
-        timeFramePeriod: 1440,
-      },
-      {
         name: '1 ay',
-        timeFrameHeaders: ['MMM YYYY', 'DD'],
-        classes: 'button',
+        timeFrameHeaders: ['DD'],
+        classes: 'buttonday',
         timeFrameOverall: 1440 * 16,
         timeFramePeriod: 1440,
       }];
@@ -49,7 +42,7 @@ export class P1Component implements OnInit {
     this.p1 = await this._p1Service.listAsync();
 
     for (let x = 0; x < this.p1.length; x++) {
-      if (this.p1[x]['DataList'].TESLIM_TARIHI == this.p1[x + 1]['DataList'].TESLIM_TARIHI) {
+      if (this.p1[x]['DataList'].TESLIM_TARIHI == this.p1[x + 1]['DataList'].TESLIM_TARIHI || this.p1[x]['DataList'].URUN_GRUP_AD == this.p1[x + 1]['DataList'].URUN_GRUP_AD) {
 
       }
       else {

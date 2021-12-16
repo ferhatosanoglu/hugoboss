@@ -23,16 +23,9 @@ export class P2Component implements OnInit {
   async ngOnInit() {
     this.periods = [
       {
-        name: '1 Sene',
-        timeFrameHeaders: ['MMM'],
-        classes: 'button',
-        timeFrameOverall: 1440 * 365,
-        timeFramePeriod: 1440,
-      },
-      {
         name: '1 ay',
-        timeFrameHeaders: ['MMM YYYY', 'DD'],
-        classes: 'button',
+        timeFrameHeaders: ['DD'],
+        classes: 'buttonday',
         timeFrameOverall: 1440 * 16,
         timeFramePeriod: 1440,
       }];
@@ -47,13 +40,13 @@ export class P2Component implements OnInit {
     this.p2 = await this._p2Service.listAsync();
 
     for (let x = 0; x < this.p2.length; x++) {
-      if (this.p2[x]['DataList'].TESLIM_TARIHI == this.p2[0]['DataList'].TESLIM_TARIHI) {
+      if (this.p2[x]['DataList'].TESLIM_TARIHI == this.p2[x + 1]['DataList'].TESLIM_TARIHI || this.p2[x]['DataList'].URUN_GRUP_AD == this.p2[x + 1]['DataList'].URUN_GRUP_AD) {
 
       }
       else {
         this.items.push({
           id: this.p2[x]['DataList'].ORDER_KOD,
-          sectionID: 1,
+          sectionID: 2,
           name: this.p2[x]['DataList'].URUN_GRUP_AD,
           start: moment(this.p2[x]['DataList'].TESLIM_TARIHI).subtract(this.p2[0]['DataList'].MODEL_SURE - 24, 'h').startOf('day'),
           end: moment(this.p2[x]['DataList'].TESLIM_TARIHI).endOf('day'),

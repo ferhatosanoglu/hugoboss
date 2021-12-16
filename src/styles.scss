@@ -26,3 +26,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       background-color: green;
     }
   }
+.time-sch-wrapper{
+  max-height: 122px !important;
+  overflow: hidden !important;
+}
+.time-sch-section {
+  position: static !important;
+  top: 2px !important;
+  
+}
+.stick{
+  border-bottom: 0.5px solid gray !important;
+}
+.buttonday{
+  visibility: hidden;
+}
